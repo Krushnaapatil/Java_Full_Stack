@@ -1,7 +1,6 @@
 package CollectionExamples;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ListEX {
     static void main() {
@@ -37,5 +36,47 @@ public class ListEX {
         System.out.println(list);
         list.remove(1);
         System.out.println(list);
+
+        List<Integer> intList = Arrays.asList(12,34,22,66,45,78,56,88);
+        System.out.println("Before Sorting : " + intList);
+        Collections.sort(intList);
+        System.out.println("After Sorting : " + intList);
+
+//        Comparator<Integer> com = new Comparator<Integer>() {
+//            @Override
+//            public int compare(Integer o1, Integer o2) {
+//                if (o1%10 > o2%10) {
+//                    return 1;
+//                }else {
+//                    return -1;
+//                }
+//            }
+//        };
+
+        //Sorted based on second digit
+        Comparator<Integer> com = (Integer o1, Integer o2) -> {
+                if (o1%10 > o2%10)
+                    return 1;
+                else
+                    return -1;
+        };
+
+        Collections.sort(intList, com);
+        System.out.println("Sorted based on second digit : " + intList);
+
+
+        //Sorted in decending order
+//        Comparator<Integer> com2 = (Integer o1, Integer o2) -> {
+//            if (o1 < o2 )
+//                return 1;
+//            else
+//                return -1;
+//        };
+//        Comparator<Integer> com2 = (Integer a, Integer b) -> a<b ? 1 : -1;
+//        Comparator<Integer> com2 = (a, b) -> Integer.compare(a,b);
+//        Comparator<Integer> com2 = Integer::compare;
+        Comparator<Integer> com2 = ( a,  b) -> a<b ? 1 : -1;
+        Collections.sort(intList, com2);
+        System.out.println("Sorted in Decending Order : " + intList);
     }
 }
